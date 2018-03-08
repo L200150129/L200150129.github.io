@@ -24,19 +24,12 @@
         marker = new google.maps.Marker({
           map: map,
           draggable: true,
-          animation: google.maps.Animation.DROP,
+          animation: google.maps.Animation.BOUNCE,
           position: myHome
         });
-        marker.addListener('click', toggleBounce);
       }
 
-      function toggleBounce() {
-        if (marker.getAnimation() !== null) {
-          marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
-      }
+      
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEYenakDOfwmE9EW-iM2azdjHH1hzKjR8&callback=initMap">
