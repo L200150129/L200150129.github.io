@@ -5,12 +5,10 @@
     <meta charset="utf-8">
     <title>Marker Clustering</title>
     <style>
-
       #map {
         height: 620px;
         width: 100%;
       }
-
       html, body {
         height: 100%;
         margin: 0;
@@ -22,23 +20,18 @@
     <center><h2>Marker Cluster Wisata di Pekalongan, Jawa Tengah</h2></center>
     <div id="map"></div>
     <script>
-
       function initMap() {
-
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 5,
           center: {lat: -6.9192998, lng: 109.5628198}
         });
-
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
         var markers = locations.map(function(location, i) {
           return new google.maps.Marker({
             position: location,
             label: labels[i % labels.length]
           });
         });
-
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
       }
