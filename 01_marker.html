@@ -3,18 +3,56 @@
   <head>
     <title>Adding Marker</title>
     <style>
-       #map {
-        height: 620px;
-        width: 100%;
-       }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a.active {
+        background-color: #006633;
+        color: white;
+      }
+
+      li a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        background-color: #006633;
+      }
+
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
     </style>
   </head>
   <body>
-    <center><h2>My HOME</h2></center>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a class="active">Adding Marker</a></li>
+      <li style="float: right; display: inline-block; color: white;padding: 14px 16px; text-align: center;">
+        LOKASI RUMAH FENDY
+      </li>
+    </ul>
+
     <div id="map"></div>
     <script>
-      var marker;
-
       function initMap() {
         var myHome = {lat: -6.9192608, lng: 109.5713044};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -22,14 +60,22 @@
           center: myHome
         });
 
-        marker = new google.maps.Marker({
+        var info = '<h3>Alamat Rumah</h3>'+
+            '<p>Dukuh Tegalborang, Desa Wonosari,</br>Kecamatan Siwalan, Kabupaten Pekalongan.</p>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: info
+        });
+
+        var marker = new google.maps.Marker({
+          position: myHome,
           map: map,
-          draggable: true,
-          animation: google.maps.Animation.BOUNCE,
-          position: myHome
+          title: "My Home"
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
         });
       }
-      
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEYenakDOfwmE9EW-iM2azdjHH1hzKjR8&callback=initMap">
