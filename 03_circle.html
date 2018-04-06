@@ -33,7 +33,7 @@
       }
 
       #map {
-        height: 100%;
+        height: 93%;
       }
       
       html, body {
@@ -48,46 +48,126 @@
       <li><a href="index.html">Home</a></li>
       <li><a class="active">Circle</a></li>
       <li style="float: right; display: inline-block; color: white; padding: 15px 16px; font-family: Calibri Light; font-size: 12pt; letter-spacing: 2px;">
-        VISUALISASI DATA GEMPA BUMI
+        GEMPA BUMI 1-2 APRIL 2018
       </li>
     </ul>
     
     <div id="map"></div>
     <script>
-      var map;
+      // longitude = Bujur, +: timur
+      // latitude = lintang, +: utara
+      var earthquake = {
+        point_1: {
+          center: {lat: -1.03, lng: 121.2}, magnitudo: 2.8
+        },
+        point_2: {
+          center: {lat: -4.64, lng: 125.43}, magnitudo: 4.3
+        },
+        point_3: {
+          center: {lat: -4.61, lng: 125.38}, magnitudo: 4.4
+        },
+        point_5: {
+          center: {lat: 0.19, lng: 97.59}, magnitudo: 3.2
+        },
+        point_6: {
+          center: {lat: -0.31, lng: 125.35}, magnitudo: 4.4
+        },
+        point_7: {
+          center: {lat: -16.68, lng: -177.7}, magnitudo: 5.4
+        },
+        point_8: {
+          center: {lat: -5.83, lng: 145.7}, magnitudo: 4.7
+        },
+        point_9: {
+          center: {lat: -1.29, lng: 120.49}, magnitudo: 3.8
+        },
+        point_10: {
+          center: {lat: -3.22, lng: 130.52}, magnitudo: 3.4
+        },
+        point_11: {
+          center: {lat: -7.8, lng: 106.46}, magnitudo: 4
+        },
+        point_12: {
+          center: {lat: 3.39, lng: 126.01}, magnitudo: 3.7
+        },
+        point_13: {
+          center: {lat: -0.19, lng: 124.61}, magnitudo: 3.4
+        },
+        point_14: {
+          center: {lat: -0.29, lng: 116.73}, magnitudo: 4.4
+        },
+        point_15: {
+          center: {lat: -6.53, lng: 128.63}, magnitudo: 4.6
+        },
+        point_16: {
+          center: {lat: -0.16, lng: 125.2}, magnitudo: 5/6
+        },
+        point_17: {
+          center: {lat: -0.24, lng: 125.21}, magnitudo: 3.6
+        },
+        point_18: {
+          center: {lat: 0.86, lng: 126.36}, magnitudo: 3.9
+        },
+        point_19: {
+          center: {lat: -5.25, lng: 133.96}, magnitudo: 5.4
+        },
+        point_20: {
+          center: {lat: -7.95, lng: 115.84}, magnitudo: 4.7
+        },
+        point_21: {
+          center: {lat: -8.99, lng: 123.38}, magnitudo: 3.7
+        },
+        point_22: {
+          center: {lat: 53.72, lng: -35.04}, magnitudo: 4.9
+        },
+        point_23: {
+          center: {lat: -6.27, lng: 130.44}, magnitudo: 4.9
+        },
+        point_24: {
+          center: {lat: 0.08, lng: 124.4}, magnitudo: 3.3
+        },
+        point_25: {
+          center: {lat: -65.76, lng: -175.57}, magnitudo: 5 
+        },
+        point_26: {
+          center: {lat: -0.84, lng: 131.06}, magnitudo: 1.4
+        },
+        point_27: {
+          center: {lat: -9.62, lng: 117.38}, magnitudo: 3.7
+        },
+        point_28: {
+          center: {lat: 0.99, lng: 126.12}, magnitudo: 3.6
+        },
+        point_29: {
+          center: {lat: -2.28, lng: 125.92}, magnitudo: 3.1
+        },
+        point_30: {
+          center: {lat: -8.09, lng: 106.03}, magnitudo: 3.3
+        },
+      };
+
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 2,
-          center: {lat: -33.865427, lng: 151.196123},
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+          center: {lat: 0.667635, lng: 121.9235352},
           mapTypeId: 'hybrid'
         });
 
-        var script = document.createElement('script');
+        function circle(){
 
-        script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-        document.getElementsByTagName('head')[0].appendChild(script);
-
-        map.data.setStyle(function(feature) {
-          var magnitude = feature.getProperty('mag');
-          return {
-            icon: getCircle(magnitude)
-          };
-        });
-      }
-
-      function getCircle(magnitude) {
-        return {
-          path: google.maps.SymbolPath.CIRCLE,
-          fillColor: 'black',
-          fillOpacity: .4,
-          scale: Math.pow(2, magnitude) / 2,
-          strokeColor: 'white',
-          strokeWeight: .5
         };
-      }
 
-      function eqfeed_callback(results) {
-        map.data.addGeoJson(results);
+        for (var location in earthquake) {
+          var locationCircle = new google.maps.Circle({
+            strokeColor: 'white',
+            strokeWeight: .8,
+            fillColor: 'yellow',
+            fillOpacity: .5,
+            map: map,
+            center: earthquake[location].center,
+            radius: Math.pow(2, earthquake[location].magnitudo) * 5000
+          });
+        }
       }
     </script>
     <script async defer
