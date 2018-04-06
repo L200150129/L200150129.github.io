@@ -48,7 +48,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a class="active">GeoJson</a></li>
       <li style="float: right; display: inline-block; color: white; padding: 15px 16px; font-family: Calibri Light; font-size: 12pt; letter-spacing: 2px;">
-        MENGIMPOR DATA GEOJSON PROVINSI JAMBI
+        DATA GEOJSON PROVINSI JAMBI
       </li>
     </ul>
 
@@ -72,9 +72,9 @@
             color = feature.getProperty('color');
           }
           return /** @type {google.maps.Data.StyleOptions} */({
-            fillColor: '#006633',
-            strokeColor: 'black',
-            strokeWeight: 1.5,
+            fillColor: 'black',
+            strokeColor: 'orange',
+            strokeWeight: 2,
           });
         });
 
@@ -84,7 +84,7 @@
 
         map.data.addListener('mouseover', function(event) {
           map.data.revertStyle();
-          map.data.overrideStyle(event.feature, {fillColor: 'white'});
+          map.data.overrideStyle(event.feature, {fillColor: 'white', strokeColor: 'black', strokeWeight: 5});
         });
 
         map.data.addListener('mouseout', function(event) {
