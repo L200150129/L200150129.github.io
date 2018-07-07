@@ -20,7 +20,7 @@
         // custom panorama provider function. Set the StreetView to display
         // the custom panorama 'reception' which we check for below.
         var panorama = new google.maps.StreetViewPanorama(
-            document.getElementById('map'), {pano: 'ums', visible: true});
+            document.getElementById('map'), {pano: 'dieng', visible: true});
         panorama.registerPanoProvider(getCustomPanorama);
       }
 
@@ -33,15 +33,15 @@
       // Construct the appropriate StreetViewPanoramaData given
       // the passed pano IDs.
       function getCustomPanorama(pano) {
-        if (pano === 'ums') {
+        if (pano === 'dieng') {
           return {
             location: {
-              pano: 'ums',
-              description: 'Google Sydney - Reception'
+              pano: 'dieng',
+              description: 'Wisata Dieng - Candi Arjuna'
             },
             links: [],
             // The text for the copyright control.
-            copyright: 'Imagery (c) 2010 Google',
+            copyright: 'Imagery (c) 2018 l200150129',
             // The definition of the tiles for this panorama.
             tiles: {
               tileSize: new google.maps.Size(1024, 512),
@@ -55,8 +55,9 @@
         }
       }
     </script>
+    
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEYenakDOfwmE9EW-iM2azdjHH1hzKjR8&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEYenakDOfwmE9EW-iM2azdjHH1hzKjR8&callback=initPano">
     </script>
     
   </body>
